@@ -1,0 +1,13 @@
+1 out of 1 target(s) converted
+
+Created solution: /home/hina/桌面/st7789/st7789.csolution.yml
+
+With projects:
+
+- /home/hina/桌面/st7789/st7789.cproject.yml
+
+Error: 0 error(s), 1 warning(s):
+
+Warnings:
+
+	Target name changed from 'Target 1' to 'Target_1'

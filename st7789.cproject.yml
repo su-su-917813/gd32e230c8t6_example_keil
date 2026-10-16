@@ -1,0 +1,40 @@
+project:
+  packs:
+    - pack: ARM::CMSIS@^6.1.0
+    - pack: ARM::CMSIS-DSP@^1.15.0
+    - pack: ARM::CMSIS-NN@^5.0.0
+    - pack: GigaDevice::GD32E23x_DFP@^1.0.2
+  setups:
+    - setup: Options for Target_1
+      debug: "on"
+      misc:
+        - C:
+            - -std=c99
+          C-CPP:
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -ffunction-sections
+            - -Wall
+            - -Wextra
+          CPP:
+            - -std=c++11
+            - -fno-exceptions
+          ASM:
+            - -masm=auto
+          Link:
+            - -Wl,--map
+            - -Wl,--cref
+            - -Wl,--callgraph
+            - -Wl,--symbols
+            - -Wl,--print-memory-usage
+            - -Wl,--gc-sections
+            - -Wl,-u,_printf_float
+  components:
+    - component: ARM::CMSIS Driver:I2C:Custom
+    - component: ARM::CMSIS Driver:SPI:Custom
+    - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS:DSP&Source
+    - component: ARM::CMSIS:NN Lib
+    - component: GigaDevice::Device:Startup

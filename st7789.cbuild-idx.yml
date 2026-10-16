@@ -1,0 +1,19 @@
+build-idx:
+  generated-by: csolution version 2.15.1+p3-gf46d68bf
+  target: Target_1
+  csolution: st7789.csolution.yml
+  cbuild-run: out/st7789+Target_1.cbuild-run.yml
+  tmpdir: tmp/Target_1/default
+  cprojects:
+    - cproject: st7789.cproject.yml
+  cbuilds:
+    - cbuild: out/st7789/Target_1/st7789+Target_1.cbuild.yml
+      project: st7789
+      configuration: +Target_1
+      messages:
+        warnings:
+          - no compiler registered. Add path to compiler 'bin' directory with environment variable <name>_TOOLCHAIN_<major>_<minor>_<patch>. <name> is one of AC6, GCC, IAR, CLANG
+        info:
+          - st7789.cbuild-pack.yml - file is already up-to-date
+          - st7789+Target_1.cbuild-run.yml - file generated successfully
+          - st7789+Target_1.cbuild.yml - file generated successfully

@@ -1,0 +1,599 @@
+build:
+  generated-by: csolution version 2.15.1+p3-gf46d68bf
+  solution: ../../../st7789.csolution.yml
+  project: ../../../st7789.cproject.yml
+  context: st7789+Target_1
+  compiler: AC6
+  device: GigaDevice::GD32E230C8
+  device-pack: GigaDevice::GD32E23x_DFP@1.0.2
+  processor:
+    endian: little
+    fpu: off
+    core: Cortex-M23
+  packs:
+    - pack: ARM::CMSIS-DSP@1.18.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0
+    - pack: ARM::CMSIS-NN@5.0.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0
+    - pack: ARM::CMSIS@6.4.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0
+    - pack: GigaDevice::GD32E23x_DFP@1.0.2
+      path: ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2
+  optimize: debug
+  debug: on
+  misc:
+    ASM:
+      - -masm=auto
+    C:
+      - -std=c99
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wall
+      - -Wextra
+    CPP:
+      - -std=c++11
+      - -fno-exceptions
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wall
+      - -Wextra
+    Link:
+      - -Wl,--map
+      - -Wl,--cref
+      - -Wl,--callgraph
+      - -Wl,--symbols
+      - -Wl,--print-memory-usage
+      - -Wl,--gc-sections
+      - -Wl,-u,_printf_float
+  define:
+    - GD32E23x
+    - _RTE_
+  define-asm:
+    - GD32E23x
+    - _RTE_
+  add-path:
+    - ../../../RTE/_Target_1
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/PrivateInclude
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/dsppp/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Driver/Include
+    - ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include
+  add-path-asm:
+    - ../../../RTE/_Target_1
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/PrivateInclude
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/dsppp/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Driver/Include
+    - ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include
+  output-dirs:
+    intdir: ../../../tmp
+    outdir: .
+    rtedir: ../../../RTE
+  output:
+    - type: elf
+      file: st7789.axf
+    - type: comp-db
+      file: compile_commands.json
+    - type: comp-db
+      file: compile_macros_c.h
+    - type: comp-db
+      file: compile_macros_cxx.h
+  components:
+    - component: ARM::CMSIS Driver:I2C:Custom@1.0.0
+      from-pack: ARM::CMSIS@6.4.0
+      selected-by: ARM::CMSIS Driver:I2C:Custom
+      implements: CMSIS Driver:I2C@2.4.0
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Driver/DriverTemplates/Driver_I2C.c
+          category: sourceC
+          attr: template
+          version: 1.0.0
+          select: I2C Driver
+    - component: ARM::CMSIS Driver:SPI:Custom@1.0.0
+      from-pack: ARM::CMSIS@6.4.0
+      selected-by: ARM::CMSIS Driver:SPI:Custom
+      implements: CMSIS Driver:SPI@2.3.0
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Driver/DriverTemplates/Driver_SPI.c
+          category: sourceC
+          attr: template
+          version: 1.0.0
+          select: SPI Driver
+    - component: ARM::CMSIS:CORE@6.4.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@6.4.0
+      selected-by: ARM::CMSIS:CORE
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Core/Include
+          category: include
+          version: 6.4.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Documentation/html/Core/index.html
+          category: doc
+          version: 6.4.0
+    - component: ARM::CMSIS:DSP&Source@1.18.0
+      condition: CMSISCORE
+      from-pack: ARM::CMSIS-DSP@1.18.0
+      selected-by: ARM::CMSIS:DSP&Source
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Documentation/html/index.html
+          category: doc
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include
+          category: include
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include/arm_common_tables.h
+          category: header
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include/arm_common_tables_f16.h
+          category: header
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include/arm_const_structs.h
+          category: header
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include/arm_const_structs_f16.h
+          category: header
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include/arm_math.h
+          category: header
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Include/arm_math_f16.h
+          category: header
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/PrivateInclude
+          category: include
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/BasicMathFunctions/BasicMathFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/BasicMathFunctions/BasicMathFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/BayesFunctions/BayesFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/BayesFunctions/BayesFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/CommonTables/CommonTables.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/CommonTables/CommonTablesF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/ComplexMathFunctions/ComplexMathFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/ComplexMathFunctions/ComplexMathFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/ControllerFunctions/ControllerFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/DistanceFunctions/DistanceFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/DistanceFunctions/DistanceFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/FastMathFunctions/FastMathFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/FastMathFunctions/FastMathFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/FilteringFunctions/FilteringFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/FilteringFunctions/FilteringFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/InterpolationFunctions/InterpolationFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/InterpolationFunctions/InterpolationFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/MatrixFunctions/MatrixFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/MatrixFunctions/MatrixFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/QuaternionMathFunctions/QuaternionMathFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/SVMFunctions/SVMFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/SVMFunctions/SVMFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/StatisticsFunctions/StatisticsFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/StatisticsFunctions/StatisticsFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/SupportFunctions/SupportFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/SupportFunctions/SupportFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/TransformFunctions/TransformFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/TransformFunctions/TransformFunctionsF16.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/Source/WindowFunctions/WindowFunctions.c
+          category: source
+          version: 1.18.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-DSP/1.18.0/dsppp/Include
+          category: include
+          version: 1.18.0
+    - component: ARM::CMSIS:NN Lib@5.0.0
+      condition: CMSIS-NN
+      from-pack: ARM::CMSIS-NN@5.0.0
+      selected-by: ARM::CMSIS:NN Lib
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Documentation/html/index.html
+          category: doc
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Include/arm_nn_math_types.h
+          category: header
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Include/arm_nn_tables.h
+          category: header
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Include/arm_nn_types.h
+          category: header
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Include/arm_nnfunctions.h
+          category: header
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Include/arm_nnsupportfunctions.h
+          category: header
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ActivationFunctions/arm_nn_activation_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ActivationFunctions/arm_relu6_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ActivationFunctions/arm_relu_q15.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ActivationFunctions/arm_relu_q7.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/BasicMathFunctions/arm_elementwise_add_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/BasicMathFunctions/arm_elementwise_add_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/BasicMathFunctions/arm_elementwise_mul_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/BasicMathFunctions/arm_elementwise_mul_s16_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/BasicMathFunctions/arm_elementwise_mul_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConcatenationFunctions/arm_concatenation_s8_w.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConcatenationFunctions/arm_concatenation_s8_x.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConcatenationFunctions/arm_concatenation_s8_y.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConcatenationFunctions/arm_concatenation_s8_z.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_1_x_n_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_1x1_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_1x1_s4_fast.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_1x1_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_1x1_s8_fast.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_fast_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_get_buffer_sizes_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_get_buffer_sizes_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_get_buffer_sizes_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_wrapper_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_wrapper_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_convolve_wrapper_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_3x3_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_fast_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_get_buffer_sizes_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_get_buffer_sizes_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_get_buffer_sizes_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_s4_opt.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_s8_opt.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_wrapper_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_wrapper_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_depthwise_conv_wrapper_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_nn_depthwise_conv_s8_core.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_s4_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_s8_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_nn_mat_mult_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ConvolutionFunctions/arm_transpose_conv_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/FullyConnectedFunctions/arm_fully_connected_get_buffer_sizes_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/FullyConnectedFunctions/arm_fully_connected_get_buffer_sizes_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/FullyConnectedFunctions/arm_fully_connected_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/FullyConnectedFunctions/arm_fully_connected_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/FullyConnectedFunctions/arm_fully_connected_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/FullyConnectedFunctions/arm_vector_sum_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/LSTMFunctions/arm_lstm_unidirectional_s8_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_padded_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_lstm_calculate_gate_s8_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_lstm_step_s8_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_lstm_update_cell_state_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_lstm_update_output_s8_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_mat_mul_core_1x_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_mat_mul_core_4x_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_mat_mul_kernel_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_mat_mult_nt_t_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_mat_mult_nt_t_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_mat_mult_nt_t_s8_s32.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_vec_mat_mul_result_acc_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s4.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_svdf_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_nntables.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_q7_to_q15_with_offset.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/NNSupportFunctions/arm_s8_to_s16_unordered_with_offset.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/PoolingFunctions/arm_avgpool_get_buffer_sizes_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/PoolingFunctions/arm_avgpool_get_buffer_sizes_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/PoolingFunctions/arm_avgpool_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/PoolingFunctions/arm_avgpool_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/PoolingFunctions/arm_max_pool_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/PoolingFunctions/arm_max_pool_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/ReshapeFunctions/arm_reshape_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/SVDFunctions/arm_svdf_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/SVDFunctions/arm_svdf_state_s16_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/SoftmaxFunctions/arm_nn_softmax_common_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/SoftmaxFunctions/arm_softmax_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/SoftmaxFunctions/arm_softmax_s8.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/SoftmaxFunctions/arm_softmax_s8_s16.c
+          category: source
+          version: 5.0.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS-NN/5.0.0/Source/SoftmaxFunctions/arm_softmax_u8.c
+          category: source
+          version: 5.0.0
+    - component: GigaDevice::Device:Startup@1.0.0
+      condition: GD32E23x
+      from-pack: GigaDevice::GD32E23x_DFP@1.0.2
+      selected-by: GigaDevice::Device:Startup
+      files:
+        - file: ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include
+          category: include
+          version: 1.0.0
+        - file: ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include/gd32e23x.h
+          category: header
+          version: 1.0.0
+        - file: ../../../RTE/Device/GD32E230C8/startup_gd32e23x.s
+          category: source
+          attr: config
+          version: 1.0.0
+        - file: ../../../RTE/Device/GD32E230C8/system_gd32e23x.c
+          category: source
+          attr: config
+          version: 1.0.0
+  apis:
+    - api: CMSIS Driver:I2C@2.4.0
+      from-pack: ARM::CMSIS@6.4.0
+      implemented-by: ARM::CMSIS Driver:I2C:Custom@1.0.0
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Documentation/html/Driver/group__i2c__interface__gr.html
+          category: doc
+          version: 2.4.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Driver/Include/Driver_I2C.h
+          category: header
+          version: 2.4.0
+    - api: CMSIS Driver:SPI@2.3.0
+      from-pack: ARM::CMSIS@6.4.0
+      implemented-by: ARM::CMSIS Driver:SPI:Custom@1.0.0
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Documentation/html/Driver/group__spi__interface__gr.html
+          category: doc
+          version: 2.3.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/6.4.0/CMSIS/Driver/Include/Driver_SPI.h
+          category: header
+          version: 2.3.0
+  linker:
+    script: ../../../RTE/Device/GD32E230C8/ac6_linker_script.sct.src
+    regions: ../../../RTE/Device/GD32E230C8/regions_GD32E230C8.h
+  constructed-files:
+    - file: ../../../RTE/_Target_1/RTE_Components.h
+      category: header
+  licenses:
+    - license: <unknown>
+      packs:
+        - pack: ARM::CMSIS-NN@5.0.0
+      components:
+        - component: ARM::CMSIS:NN Lib@5.0.0
+    - license: <unknown>
+      packs:
+        - pack: GigaDevice::GD32E23x_DFP@1.0.2
+      components:
+        - component: GigaDevice::Device:Startup@1.0.0
+    - license: Apache-2.0
+      packs:
+        - pack: ARM::CMSIS-DSP@1.18.0
+        - pack: ARM::CMSIS@6.4.0
+      components:
+        - component: ARM::CMSIS Driver:I2C:Custom@1.0.0
+        - component: ARM::CMSIS Driver:SPI:Custom@1.0.0
+        - component: ARM::CMSIS:CORE@6.4.0
+        - component: ARM::CMSIS:DSP&Source@1.18.0
+        - component: CMSIS Driver:I2C(API)
+        - component: CMSIS Driver:SPI(API)

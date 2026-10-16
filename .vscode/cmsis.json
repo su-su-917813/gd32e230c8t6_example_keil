@@ -1,0 +1,9 @@
+{
+    "targetSet": {
+        "st7789": {
+            "activeTargetType": "Target_1"
+        }
+    },
+    "activeSolution": "../st7789.csolution.yml",
+    "activeTarget": "Target_1"
+}

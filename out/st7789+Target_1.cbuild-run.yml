@@ -1,0 +1,56 @@
+cbuild-run:
+  generated-by: csolution version 2.15.1+p3-gf46d68bf
+  solution: ../st7789.csolution.yml
+  target-type: Target_1
+  target-set: <default>
+  compiler: AC6
+  device: GigaDevice::GD32E230C8
+  device-pack: GigaDevice::GD32E23x_DFP@1.0.2
+  device-pack-path: ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2
+  output:
+    - file: st7789/Target_1/st7789.axf
+      info: generate by st7789+Target_1
+      type: elf
+      project: st7789
+      load: image+symbols
+  system-resources:
+    memory:
+      - name: IROM1
+        access: rx
+        start: 0x08000000
+        size: 0x00010000
+        default: true
+        from-pack: GigaDevice::GD32E23x_DFP@1.0.2
+      - name: IRAM1
+        access: rwx
+        start: 0x20000000
+        size: 0x00002000
+        default: true
+        from-pack: GigaDevice::GD32E23x_DFP@1.0.2
+    processors:
+      - core: Cortex-M23
+        revision: r0p0
+        endian: little
+        fpu: none
+        mpu: present
+        trustzone: none
+        max-clock: 0
+  system-descriptions:
+    - file: ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2/SVD/GD32E230.svd
+      type: svd
+  debugger:
+    name: CMSIS-DAP@pyOCD
+    protocol: swd
+    clock: 10000000
+    gdbserver:
+      - port: 3333
+  programming:
+    - algorithm: ${CMSIS_PACK_ROOT}/GigaDevice/GD32E23x_DFP/1.0.2/Flash/GD32E23x.FLM
+      start: 0x08000000
+      size: 0x00010000
+      ram-start: 0x20000000
+      ram-size: 0x00002000
+  debug-topology:
+    trace-sinks:
+      - serialwire: 
+      - tracebuffer: 
