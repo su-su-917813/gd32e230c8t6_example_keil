@@ -331,7 +331,7 @@ typedef FlagStatus bit_status;
 #define GPIO_OSPEED_2MHZ           OSPD_OSPD0(0)         /*!< output max speed 2MHz */
 #define GPIO_OSPEED_10MHZ          OSPD_OSPD0(1)         /*!< output max speed 10MHz */
 #define GPIO_OSPEED_50MHZ          OSPD_OSPD0(3)         /*!< output max speed 50MHz */
-#define GPIO_OSPEED_100MHZ          OSPD_OSPD0(4)         /*!< output max speed 100MHz */
+
 /* GPIO alternate function values */
 #define GPIO_AFR_SET(n, af)        ((uint32_t)((uint32_t)(af) << (4U * (n))))
 #define GPIO_AFR_MASK(n)           (0xFU << (4U * (n)))

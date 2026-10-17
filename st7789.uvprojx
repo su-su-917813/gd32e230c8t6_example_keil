@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>GD32E230</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\Hardware\lcd;.\Hardware;.\Firmware\CMSIS;.\Firmware\CMSIS\GD\GD32E23x\Include;.\Firmware\GD32E23x_standard_peripheral\Include</IncludePath>
+              <IncludePath>.\User;.\Hardware;.\Hardware\lcd;.\Hardware\touch_CTP;.\Firmware\CMSIS;.\Firmware\CMSIS\GD\GD32E23x\Include;.\Firmware\GD32E23x_standard_peripheral\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -523,6 +523,11 @@
               <FileName>LCD.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Hardware\lcd\LCD.c</FilePath>
+            </File>
+            <File>
+              <FileName>touch_CTP.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\touch_CTP\touch_CTP.c</FilePath>
             </File>
           </Files>
         </Group>
